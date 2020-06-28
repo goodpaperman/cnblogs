@@ -6,4 +6,4 @@ rank=$(echo $data | sed -n 2p)
 echo "$day $score $rank" >> score.txt
 git add score.txt
 git commit -m "udpate score"
-git push
+git push origin master
