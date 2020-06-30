@@ -1,7 +1,7 @@
 #! /usr/bin/gnuplot
 set terminal png size 1080,720   #建立1080*720空白图片
-set title "cnblogs/goodcitizen"   #注明曲线图标题
-set output "goodcitizen.png"   #设置文件名
+set title usr   #注明曲线图标题
+set output "draw.png"   #设置文件名
 set grid
 
 set xdata time

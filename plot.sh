@@ -1,3 +1,4 @@
 #! /bin/sh
-gnuplot ./draw.plt
-eog goodcitizen.png &
+usr=$(cat user.txt)
+gnuplot -e "usr='$usr'" ./draw.plt
+eog draw.png &
