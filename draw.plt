@@ -1,7 +1,7 @@
 #! /usr/bin/gnuplot
 set terminal png size 1080,720   #建立1080*720空白图片
-set title "cnblogs/goodcitizen"   #注明曲线图标题
-set output "goodcitizen.png"   #设置文件名
+set title usr   #注明曲线图标题
+set output "draw.png"   #设置文件名
 set grid
 
 set xdata time
@@ -17,8 +17,8 @@ set ytics nomirror
 
 #set yrange [0:6000]
 #set y2range [0:120000]
-set yrange [y1min:y1max]
-set y2range [y2min:y2max]
+#set yrange [y1min:y1max]
+#set y2range [y2min:y2max]
 #set ytics ("0" 0,"1" 1000,"2" 2000,"3" 3000,"4" 4000,"5" 5000,"6" 6000)   #设置y轴范围、刻度参数
 #set y2tics ("0" 0,"0.2" 20000,"0.4" 40000,"0.6" 60000,"0.8" 80000,"1.0" 100000,"1.2" 120000)   #设置y轴范围、刻度参数
 
