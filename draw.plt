@@ -15,6 +15,7 @@ set y2label "rank"
 set y2tics
 set ytics nomirror
 
+#try to fit but failed
 #y(x)=a*x+b
 #fit y(x) "score.txt" using 1:2 via a,b
 
