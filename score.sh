@@ -1,4 +1,5 @@
 #! /bin/sh
+cd .termux/tasker/
 git pull origin master
 day=$(date +"%Y-%m-%d")
 last=$(cat ./score.txt | tail -1 | awk '{ print $1 }')
