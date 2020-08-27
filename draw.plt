@@ -1,6 +1,6 @@
 #! /usr/bin/gnuplot
 set terminal png size 1080,720   #建立空白图片
-set title usr   #注明曲线图标题
+set title usr.": score (".y1max.") rank (".y2min.")"  #注明曲线图标题
 set output "draw.png"   #设置文件名
 set grid
 
@@ -23,7 +23,7 @@ set ytics nomirror
 #fit y(x) "score.txt" using 1:2 via a,b
 
 #plot "score.txt" using 1:2:(stringcolumn(2)) with labels title "score" axis x1y1, "score.txt" using 1:3:(stringcolumn(3)) with labels title "rank" axis x1y2
-plot "score.txt" using 1:($2-y1min) with lp pt 5 title "score" axis x1y1, "score.txt" using 1:(y2max-$3) with lp pt 7 title "rank" axis x1y2
+plot "score.txt" using 1:($2-y1min+50) with lp pt 5 title "score" axis x1y1, "score.txt" using 1:(y2max-$3-500) with lp pt 7 title "rank" axis x1y2
 
 #plot y(x) with l lw 2 lt 2  notitle axis x1y1
 
