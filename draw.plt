@@ -22,7 +22,8 @@ set ytics nomirror
 #y(x)=a*x+b
 #fit y(x) "score.txt" using 1:2 via a,b
 
-plot "score.txt" using 1:2 with lp pt 5 title "score" axis x1y1, "score.txt" using 1:3 with lp pt 7 title "rank" axis x1y2
+#plot "score.txt" using 1:2:(stringcolumn(2)) with labels title "score" axis x1y1, "score.txt" using 1:3:(stringcolumn(3)) with labels title "rank" axis x1y2
+plot "score.txt" using 1:($2-4000) with lp pt 5 title "score" axis x1y1, "score.txt" using 1:(117000-$3) with lp pt 7 title "rank" axis x1y2
 
 #plot y(x) with l lw 2 lt 2  notitle axis x1y1
 
