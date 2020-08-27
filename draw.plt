@@ -1,7 +1,8 @@
 #! /usr/bin/gnuplot
 set terminal png size 1080,720   #建立空白图片
-set title usr.": score (".y1max.") rank (".y2min.")"  #注明曲线图标题
+set title usr.": score (".y1min."...".y1max.") rank (".y2max."...".y2min.")"  #注明曲线图标题
 set output "draw.png"   #设置文件名
+set key left
 set grid
 
 set xdata time
