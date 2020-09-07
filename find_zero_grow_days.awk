@@ -2,12 +2,12 @@
 BEGIN {
 	l="";
 	s=0;
-	t=0
+	t=0;
 } 
 
 {
 	if(s==$2) {
-		print l "  " strftime ("%A", t)
+		print l "  " $3 "  " strftime ("%A", t)
 	} 
 	
 	l=$0; 
