@@ -1,6 +1,15 @@
 #! /bin/sh
 cd .termux/tasker/
+type expect
+has_expect=$?
+
+if [ $has_expect == 0 ]; then
+# expect not installed
 git pull origin master
+else
+./gpull.sh
+fi
+
 day=$(date +"%Y-%m-%d")
 last=$(cat ./score.txt | tail -1 | awk '{ print $1 }')
 if [ "$day" \< "$last" -o "$day" = "$last" ]; then
@@ -15,4 +24,9 @@ rank=$(echo $data | sed -n 2p)
 echo "$day $score $rank" >> score.txt
 git add score.txt
 git commit -m "udpate score"
+if [ $has_expect == 0 ]; then 
+# expect not installed
 git push origin master
+else
+./gpush.sh
+fi
