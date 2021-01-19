@@ -3,7 +3,7 @@ cd .termux/tasker/
 type expect
 has_expect=$?
 
-if [ $has_expect == 0 ]; then
+if [ $has_expect -ne 0 ]; then
 # expect not installed
 git pull origin master
 else
@@ -24,7 +24,7 @@ rank=$(echo $data | sed -n 2p)
 echo "$day $score $rank" >> score.txt
 git add score.txt
 git commit -m "udpate score"
-if [ $has_expect == 0 ]; then 
+if [ $has_expect -ne 0 ]; then 
 # expect not installed
 git push origin master
 else
