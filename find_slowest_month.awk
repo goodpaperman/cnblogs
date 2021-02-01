@@ -1,27 +1,28 @@
 #! /bin/awk
 BEGIN {
+	# must passin N parameter
+	#N=1000;
 	max=0; 
-	maxt=0;
+	maxs=0;
 	#print strftime ("%Y %m", systime())
+	print "N = " N
 } 
 
 {
-	str=$1 " " $2 " 01 00 00 00";  # remove day
-	#print str
-	t=mktime(str)
-	#print strftime ("%Y %m: ", t)
-	count[t]++; 
-	if (count[t] > max) {
-		max=count[t];
-		maxt=t; 
+	s=int($3/N);
+	count[s]++; 
+	#print $3, s
+	if (count[s] > max) {
+		max=count[s]; 
+		#maxs=s*N;
+		maxs=$3;
 	}
 }
 
 END {
 	for (i in count) {
-		#print i, count[i]
-		print strftime ("%Y/%m", i), count[i]
+		print i*N, count[i]
 	}
 
-	print "max elapse is " max " at " strftime ("%Y/%m", maxt)
+	print "max days for rank to grow is " max " at " maxs
 }
