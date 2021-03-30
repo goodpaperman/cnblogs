@@ -1,13 +1,12 @@
 #! /bin/sh
-cd .termux/tasker/
-type expect
+type expect >/dev/null
 has_expect=$?
 
 if [ $has_expect -ne 0 ]; then
-# expect not installed
-git pull origin master
+    # expect not installed
+    git pull origin master
 else
-./gpull.sh
+    ./gpull.sh
 fi
 
 day=$(date +"%Y-%m-%d")
@@ -25,8 +24,8 @@ echo "$day $score $rank" >> score.txt
 git add score.txt
 git commit -m "udpate score"
 if [ $has_expect -ne 0 ]; then 
-# expect not installed
-git push origin master
+    # expect not installed
+    git push origin master
 else
-./gpush.sh
+    ./gpush.sh
 fi
