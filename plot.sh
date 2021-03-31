@@ -1,5 +1,4 @@
 #! /bin/sh
-cd .termux/tasker/
 usr=$(cat user.txt)
 firstline=$(cat ./score.txt | head -1)
 y1min=$(echo $firstline | awk '{ print $2 }')
