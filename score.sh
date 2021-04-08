@@ -1,5 +1,5 @@
 #! /bin/sh
-type expect >/dev/null
+type expect >/dev/null 2>&1
 has_expect=$?
 
 if [ $has_expect -ne 0 ]; then
