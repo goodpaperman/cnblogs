@@ -9,8 +9,10 @@ set xdata time
 set timefmt "%Y-%m-%d"
 set format x "%m/%d"
 set xtic rotate by 315 # 270 + 45
-set xtics 86400*7 # 7 days (a week) a big tic
-set mxtics 7 # every day a small tic
+set xtics 86400*28 # 4 weeks (1 month) a big tic
+set mxtics 4 # every week a small tic
+#set xtics 86400*7 # 7 days (a week) a big tic
+#set mxtics 7 # every day a small tic
 
 # plot in double Y axises
 set xlabel "day(s)"
