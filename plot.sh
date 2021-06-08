@@ -10,10 +10,12 @@ echo "y1 range [$y1min,$y1max], y2 range [$y2max,$y2min]"
 #y1min=$(($y1min-50))
 #y2max=$(($y2max+500))
 gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./draw.plt
+gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./fit.plt
 # for centos
 type eog > /dev/null 2>&1
 if [ $? -eq 0 ]; then 
     eog draw.png &
+    eog fit.png &
     exit 0
 fi
 
@@ -21,6 +23,7 @@ fi
 type open > /dev/null 2>&1
 if [ $? -eq 0 ]; then 
     open draw.png &
+    open fit.png &
     exit 0
 fi
 
@@ -28,6 +31,7 @@ fi
 type mspaint > /dev/null 2>&1
 if [ $? -eq 0 ]; then 
     mspaint draw.png &
+    mspaint fit.png &
     exit 0
 fi
 
