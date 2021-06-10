@@ -22,6 +22,11 @@ score=$(echo $data | sed -n 1p)
 rank=$(echo $data | sed -n 2p)
 echo "$day $score $rank" >> score.txt
 git add score.txt
+
+# force to calculate fit params
+sh plot.sh
+git add fit.data
+
 git commit -m "udpate score"
 if [ $has_expect -ne 0 ]; then 
     # expect not installed
