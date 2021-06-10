@@ -10,7 +10,14 @@ echo "y1 range [$y1min,$y1max], y2 range [$y2max,$y2min]"
 #y1min=$(($y1min-50))
 #y2max=$(($y2max+500))
 gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./draw.plt
+
+rm fit.log 2>/dev/null
 gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./fit.plt
+
+# collect fit parameters
+# variable 'line' contains line number of the marker, we will got parameters after this line (line+2..line+4)
+awk -v line=$(awk '/Final set of parameters/{print NR}' fit.log) '{if(NR>line+1 && NR<line+5){print $3}}' fit.log | tr "\n" "\t" >> fit.data
+
 # for centos
 type eog > /dev/null 2>&1
 if [ $? -eq 0 ]; then 

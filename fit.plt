@@ -22,5 +22,5 @@ set ylabel "rank"
 y(x)=a*x*x+b*x+c
 fit y(x) "score.txt" using 2:3 via a,b,c
 
-plot "score.txt" using 2:3 with lp pt 13 title "score-rank", y(x) with l lw 2 lt 2  notitle
+plot "score.txt" using 2:3 with lp pt 13 title "score-rank", y(x) with l lw 2 lt 2 title "fit"
 quit   #退出软件
