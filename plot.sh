@@ -16,7 +16,8 @@ gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max
 
 # collect fit parameters
 # variable 'line' contains line number of the marker, we will got parameters after this line (line+2..line+4)
-awk -v line=$(awk '/Final set of parameters/{print NR}' fit.log) '{if(NR>line+1 && NR<line+5){print $3}}' fit.log | tr "\n" "\t" >> fit.data
+# jump empty line by condition '!NF'
+awk -v line=$(awk '/Final set of parameters/{print NR}' fit.log) '{if(NR>line+1 && NR<line+6){if(!NF)next;print $3}}' fit.log | tr "\n" "\t" >> fit.data
 
 # for centos
 type eog > /dev/null 2>&1

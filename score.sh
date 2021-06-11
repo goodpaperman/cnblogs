@@ -24,7 +24,7 @@ echo "$day $score $rank" >> score.txt
 git add score.txt
 
 # force to calculate fit params
-sh plot.sh
+./plot.sh
 git add fit.data
 
 git commit -m "udpate score"
