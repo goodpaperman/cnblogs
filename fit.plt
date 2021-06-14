@@ -19,6 +19,8 @@ set ylabel "rank"
 #set ytics nomirror
 
 #try to fit
+#y(x)=a/x+b
+#fit y(x) "score.txt" using 2:3 via a,b
 y(x)=a*x*x+b*x+c
 fit y(x) "score.txt" using 2:3 via a,b,c
 
