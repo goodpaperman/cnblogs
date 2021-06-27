@@ -12,7 +12,7 @@ echo "y1 range [$y1min,$y1max], y2 range [$y2max,$y2min]"
 gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./draw.plt
 
 #rm fit.log 2>/dev/null
-gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./fit.plt
+gnuplot -e "usr='$usr'" -e "y1max='$y1max'" -e "y2min='$y2min'" ./fit.plt
 
 #if [ $# -gt 0 ]; then 
 #    # collect fit parameters

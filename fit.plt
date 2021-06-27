@@ -1,6 +1,6 @@
 #! /usr/bin/gnuplot
 set terminal png size 1080,720   #建立空白图片
-set title usr.": score (".y1range.") rank (".y2range.")"  #注明曲线图标题
+set title usr.": score (".y1max.") rank (".y2min.")"  #注明曲线图标题
 set output "fit.png"   #设置文件名
 set key left
 set grid
@@ -21,7 +21,7 @@ fit y2(x) "score.txt" using 2:3 via f,g
 y3(x)=m*log(x)+n
 fit y3(x) "score.txt" using 2:3 via m,n
 
-xval=40000
+xval=y1max*2
 y1val=a*xval**2+b*xval+c
 y2val=f/xval+g
 #y2val=j*atan(xval)+k
