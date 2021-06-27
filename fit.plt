@@ -21,9 +21,9 @@ y4(x)=m*log(x)+n
 fit y4(x) "score.txt" using 2:3 via m,n
 
 plot "score.txt" using 2:3 with lp pt 13 title "score-rank", \
-    y1(x) with l lw 2 lt 2 title "f(x)=ax^2+bx+c", \
-    y2(x) with l lw 3 lt 3 title "f(x)=a/x+b", \
-    y3(x) with l lw 1 lt 4 title "f(x)=a*atan(x)+b", \
-    y4(x) with l lw 2 lt 5 title "f(x)=a*log(x)+b"
+    y1(x) with l lw 6 lt 2 title sprintf("f1(x)=%.8fx^2%+fx%+.0f",a,b,c), \
+    y2(x) with l lw 5 lt 3 title sprintf("f2(x)=%.2f/x%+.0f",f,g), \
+    y3(x) with l lw 2 lt 4 title sprintf("f3(x)=%.2fatan(x)%+.0f",j,k), \
+    y4(x) with l lw 2 lt 5 title sprintf("f4(x)=%.2flog(x)%+.0f",m,n)
 
 quit   #退出软件
