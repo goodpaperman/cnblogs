@@ -5,24 +5,25 @@ set output "fit.png"   #设置文件名
 set key left
 set grid
 
-#set xdata time
-#set timefmt "%Y-%m-%d"
-#set format x "%m/%d"
-#set xtic rotate by 315 # 270 + 45
-#set xtics 86400*28 # 4 weeks (1 month) a big tic
-#set mxtics 4 # every week a small tic
-
 set xlabel "score"
 set ylabel "rank"
-#set y2label "rank"
-#set y2tics
-#set ytics nomirror
 
-#try to fit
-#y(x)=a/x+b
-#fit y(x) "score.txt" using 2:3 via a,b
-y(x)=a*x*x+b*x+c
-fit y(x) "score.txt" using 2:3 via a,b,c
+y1(x)=a*x**2+b*x+c
+fit y1(x) "score.txt" using 2:3 via a,b,c
 
-plot "score.txt" using 2:3 with lp pt 13 title "score-rank", y(x) with l lw 2 lt 2 title "fit"
+y2(x)=f/x+g
+fit y2(x) "score.txt" using 2:3 via f,g
+
+y3(x)=j*atan(x)+k
+fit y3(x) "score.txt" using 2:3 via j,k
+
+y4(x)=m*log(x)+n
+fit y4(x) "score.txt" using 2:3 via m,n
+
+plot "score.txt" using 2:3 with lp pt 13 title "score-rank", \
+    y1(x) with l lw 2 lt 2 title "f(x)=ax^2+bx+c", \
+    y2(x) with l lw 3 lt 3 title "f(x)=a/x+b", \
+    y3(x) with l lw 1 lt 4 title "f(x)=a*atan(x)+b", \
+    y4(x) with l lw 2 lt 5 title "f(x)=a*log(x)+b"
+
 quit   #退出软件
