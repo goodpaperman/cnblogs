@@ -23,9 +23,9 @@ rank=$(echo $data | sed -n 2p)
 echo "$day $score $rank" >> score.txt
 git add score.txt
 
-## force to calculate fit params
-#./plot.sh "update_fit_data"
-#git add fit.data
+# force to calculate fit params & predicating values
+./plot.sh "update_predicating_data"
+git add predicate_*.data
 
 git commit -m "udpate score"
 if [ $has_expect -ne 0 ]; then 

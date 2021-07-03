@@ -11,7 +11,8 @@ echo "y1 range [$y1min,$y1max], y2 range [$y2max,$y2min]"
 #y2max=$(($y2max+500))
 gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./draw.plt
 
-#rm fit.log 2>/dev/null
+# clear log to get generated values
+rm fit.log 2>/dev/null
 gnuplot -e "usr='$usr'" -e "y1max='$y1max'" -e "y2min='$y2min'" ./fit.plt
 
 #if [ $# -gt 0 ]; then 
@@ -21,6 +22,21 @@ gnuplot -e "usr='$usr'" -e "y1max='$y1max'" -e "y2min='$y2min'" ./fit.plt
 #    awk -v line=$(awk '/Final set of parameters/{print NR}' fit.log) '{if(NR>line+1 && NR<line+6){if(!NF)next;print $3}}' fit.log | tr "\n" "\t" >> fit.data
 #    echo "" >> fit.data
 #fi
+
+if [ $# -gt 0 ]; then 
+    # don't know how to print out parameter (a,b,c,f,g,m,n) from gnuplot script, so here extract them from fit.log (that's why we clear fit.log before calling fit.plt)
+    eval $(sed -n '/[abcfgmn] *=.*/p' fit.log  | awk '{print $1,$2,$3+0}' | sed 's/ //g')
+    # after that line, a/b/c/f/g/m/n takes effect, now calculate predicating values
+    
+    # predicate x*2, round result to integer
+    xval=$(($y1max*2))
+    eval $(awk -v a=$a -v b=$b -v c=$c -v f=$f -v g=$g -v m=$m -v n=$n -v xval=$xval 'BEGIN { print "y1="int(a*xval*xval+b*xval+c+0.5); print "y2="int(f/xval+g+0.5); print "y3="int(m*log(xval)+n+0.5) }')
+    
+    # dump results to data files
+    echo "$xval $y1" >> predicate_binomial.data
+    echo "$xval $y2" >> predicate_reciprocal.data
+    echo "$xval $y3" >> predicate_logarithm.data
+fi
 
 # for centos
 type eog > /dev/null 2>&1
@@ -47,3 +63,4 @@ if [ $? -eq 0 ]; then
 fi
 
 exit 1
+
