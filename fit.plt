@@ -8,7 +8,7 @@ set grid
 set xlabel "score"
 set ylabel "rank"
 # to prevent predicating value pollute our x-axis
-set xrange [xmin:xmax]
+set xrange [y1min-100:y1max+100]
 # no fit log in console (fit.log only)
 set fit quiet
 
@@ -41,8 +41,8 @@ plot "score.txt" using 2:3 with lp pt 13 title "score-rank", \
     y1(x) with l lw 4 lt 2 title sprintf("f1(x)=%.8fx^2%+fx%+.0f",a,b,c), \
     y2(x) with l lw 3 lt 3 title sprintf("f2(x)=%.2f/x%+.0f",f,g), \
     y3(x) with l lw 2 lt rgb "red" title sprintf("f3(x)=%.2flog(x)%+.0f",m,n), \
-    "predicate_binomial.data" using 1:2 with lp pt 12 title "f1-pred", \
-    "predicate_reciprocal.data" using 1:2 with lp pt 11 title "f2-pred", \
-    "predicate_logarithm.data" using 1:2 with lp pt 10 title "f3-pred"
+    "predicate_binomial.data" using 1:2 with lp pt 12 lt 2 title "f1-pred", \
+    "predicate_reciprocal.data" using 1:2 with lp pt 11 lt 3 title "f2-pred", \
+    "predicate_logarithm.data" using 1:2 with lp pt 10 lt rgb "red" title "f3-pred"
 
 quit   #退出软件

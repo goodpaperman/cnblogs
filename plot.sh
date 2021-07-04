@@ -1,24 +1,20 @@
 #! /bin/sh
 usr=$(cat user.txt)
-eval $(cat ./score.txt | head -1 | awk '{ print "xmin="$1; print "y1min="$2; print "y2max="$3 }')
-eval $(cat ./score.txt | tail -1 | awk '{ print "xmax="$1; print "y1max="$2; print "y2min="$3 }')
+eval $(cat ./score.txt | head -1 | awk '{ print "y1min="$2; print "y2max="$3 }')
+eval $(cat ./score.txt | tail -1 | awk '{ print "y1max="$2; print "y2min="$3 }')
 #firstline=$(cat ./score.txt | head -1)
-#xmin=$(echo $firstline | awk '{ print $1 }')
 #y1min=$(echo $firstline | awk '{ print $2 }')
 #y2max=$(echo $firstline | awk '{ print $3 }')
 #lastline=$(cat ./score.txt | tail -1)
-#xmax=$(echo $firstline | awk '{ print $1 }')
 #y1max=$(echo $lastline | awk '{ print $2 }')
 #y2min=$(echo $lastline | awk '{ print $3 }')
 
 echo "y1 range [$y1min,$y1max], y2 range [$y2max,$y2min]"
-#y1min=$(($y1min-50))
-#y2max=$(($y2max+500))
 gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./draw.plt
 
 # clear log to get generated values
 rm fit.log 2>/dev/null
-gnuplot -e "usr='$usr'" -e "y1max='$y1max'" -e "y2min='$y2min'" -e "xmin='$xmin'" -e "xmax='$xmax'" ./fit.plt
+gnuplot -e "usr='$usr'" -e "y1min='$y1min'" -e "y1max='$y1max'" -e "y2min='$y2min'" -e "y2max='$y2max'" ./fit.plt
 
 #if [ $# -gt 0 ]; then 
 #    # collect fit parameters
