@@ -36,30 +36,30 @@ if [ $# -gt 0 ]; then
     echo "$xval $y1" >> predicate_binomial.data
     echo "$xval $y2" >> predicate_reciprocal.data
     echo "$xval $y3" >> predicate_logarithm.data
-fi
-
-# for centos
-type eog > /dev/null 2>&1
-if [ $? -eq 0 ]; then 
-    eog draw.png &
-    eog fit.png &
-    exit 0
-fi
-
-# for mac
-type open > /dev/null 2>&1
-if [ $? -eq 0 ]; then 
-    open draw.png &
-    open fit.png &
-    exit 0
-fi
-
-# for windows msys2
-type mspaint > /dev/null 2>&1
-if [ $? -eq 0 ]; then 
-    mspaint draw.png &
-    mspaint fit.png &
-    exit 0
+else
+    # for centos
+    type eog > /dev/null 2>&1
+    if [ $? -eq 0 ]; then 
+        eog draw.png &
+        eog fit.png &
+        exit 0
+    fi
+    
+    # for mac
+    type open > /dev/null 2>&1
+    if [ $? -eq 0 ]; then 
+        open draw.png &
+        open fit.png &
+        exit 0
+    fi
+    
+    # for windows msys2
+    type mspaint > /dev/null 2>&1
+    if [ $? -eq 0 ]; then 
+        mspaint draw.png &
+        mspaint fit.png &
+        exit 0
+    fi
 fi
 
 exit 1
