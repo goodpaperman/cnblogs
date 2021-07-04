@@ -7,6 +7,10 @@ set grid
 
 set xlabel "score"
 set ylabel "rank"
+# to prevent predicating value pollute our x-axis
+set xrange [xmin:xmax]
+# no fit log in console (fit.log only)
+set fit quiet
 
 y1(x)=a*x**2+b*x+c
 fit y1(x) "score.txt" using 2:3 via a,b,c
@@ -32,11 +36,13 @@ set label 2 sprintf("f2(%.0f)=%.0f",xval,y2val) at graph 0.6,0.65 left
 #set label 3 sprintf("f2(%.0f)=%.0f",xval,y2val) at graph 0.6,0.6 left
 set label 3 sprintf("f3(%.0f)=%.0f",xval,y3val) at graph 0.6,0.6 left
 
+    #y2(x) with l lw 2 lt 3 title sprintf("f2(x)=%.2fatan(x)%+.0f",j,k),
 plot "score.txt" using 2:3 with lp pt 13 title "score-rank", \
     y1(x) with l lw 4 lt 2 title sprintf("f1(x)=%.8fx^2%+fx%+.0f",a,b,c), \
     y2(x) with l lw 3 lt 3 title sprintf("f2(x)=%.2f/x%+.0f",f,g), \
-    y3(x) with l lw 2 lt rgb "red" title sprintf("f3(x)=%.2flog(x)%+.0f",m,n)
-    #y2(x) with l lw 2 lt 3 title sprintf("f2(x)=%.2fatan(x)%+.0f",j,k), \
-
+    y3(x) with l lw 2 lt rgb "red" title sprintf("f3(x)=%.2flog(x)%+.0f",m,n), \
+    "predicate_binomial.data" using 1:2 with lp pt 12 title "f1-pred", \
+    "predicate_reciprocal.data" using 1:2 with lp pt 11 title "f2-pred", \
+    "predicate_logarithm.data" using 1:2 with lp pt 10 title "f3-pred"
 
 quit   #退出软件
