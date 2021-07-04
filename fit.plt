@@ -2,7 +2,7 @@
 set terminal png size 1080,720   #建立空白图片
 set title usr.": score (".y1max.") rank (".y2min.")"  #注明曲线图标题
 set output "fit.png"   #设置文件名
-set key left
+set key left reverse Left spacing 1.2
 set grid
 
 set xlabel "score"
