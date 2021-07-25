@@ -38,27 +38,60 @@ if [ $# -gt 0 ]; then
     echo "$xval $y2" >> predicate_reciprocal.data
     echo "$xval $y3" >> predicate_logarithm.data
 else
+    # draw predicate with current
+    # before plot, we need create data for merged-predicate curve
+    paste predicate_reciprocal.data predicate_logarithm.data > predicate_merged.data
+
+    # unset arr_rec
+    # unset arr_log
+    # rm predicate_merged.data
+    # for line in `cat predicate_reciprocal.data`
+    # do
+    #     arr_rec[${#arr_rec[@]}]="$line"
+    # done
+
+    # for line in `cat predicate_logarithm.data`
+    # do
+    #     arr_log[${#arr_log[@]}]="$line"
+    # done
+    # 
+    # if [ ${#arr_rec[@]} -ne ${#arr_log[@]} ]; then 
+    #     echo "WARNING: predicate_reciprocal.data [${#arr_rec[@]}] != predicate_logarithm.data [${#arr_log[@]}]"
+    # fi
+
+    # n=0
+    # while [ $n -lt ${#arr_rec[@]} ];
+    # do
+    #     line="${arr_rec[$n]} "$(echo ${arr_log[$n]} | awk '{print $2}') 
+    #     echo "$line" >> predicate_merged.data
+    # done
+
+    gnuplot -e "usr='$usr'" -e "y1min='$y1min'" -e "y1max='$y1max'" -e "y2min='$y2min'" -e "y2max='$y2max'" ./predicate.plt
+
     # for centos
     type eog > /dev/null 2>&1
     if [ $? -eq 0 ]; then 
         eog draw.png &
         eog fit.png &
+        eog predicate.png &
         exit 0
     fi
-    
+
     # for mac
     type open > /dev/null 2>&1
     if [ $? -eq 0 ]; then 
         open draw.png &
         open fit.png &
+        open predicate.png &
         exit 0
     fi
-    
+
     # for windows msys2
     type mspaint > /dev/null 2>&1
     if [ $? -eq 0 ]; then 
         mspaint draw.png &
         mspaint fit.png &
+        mspaint predicate.png &
         exit 0
     fi
 fi

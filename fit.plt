@@ -40,9 +40,6 @@ set label 3 sprintf("f3(%.0f)=%.0f",xval,y3val) at graph 0.6,0.6 left
 plot "score.txt" using 2:3 with lp pt 13 title "score-rank", \
     y1(x) with l lw 4 lt 2 title sprintf("f1(x)=%.8fx^2%+fx%+.0f",a,b,c), \
     y2(x) with l lw 3 lt 3 title sprintf("f2(x)=%.2f/x%+.0f",f,g), \
-    y3(x) with l lw 2 lt rgb "red" title sprintf("f3(x)=%.2flog(x)%+.0f",m,n), \
-    "predicate_binomial.data" using 1:2 with lp pt 12 lt 2 title "f1-pred", \
-    "predicate_reciprocal.data" using 1:2 with lp pt 11 lt 3 title "f2-pred", \
-    "predicate_logarithm.data" using 1:2 with lp pt 10 lt rgb "red" title "f3-pred"
+    y3(x) with l lw 2 lt rgb "red" title sprintf("f3(x)=%.2flog(x)%+.0f",m,n) 
 
 quit   #退出软件
