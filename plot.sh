@@ -77,6 +77,15 @@ else
         exit 0
     fi
 
+    # for raspberry pi (has open but do nothing, put this setting before open)
+    type xdg-open > /dev/null 2>&1
+    if [ $? -eq 0 ]; then 
+        xdg-open draw.png &
+        xdg-open fit.png &
+        xdg-open predicate.png &
+        exit 0
+    fi
+
     # for mac
     type open > /dev/null 2>&1
     if [ $? -eq 0 ]; then 
