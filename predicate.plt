@@ -7,6 +7,9 @@ set grid
 
 set xlabel "score"
 set ylabel "rank"
+# too see every 10000 rank corresponding predicated score
+set ytics 10000
+# set mytics 2
 # to prevent predicating value pollute our x-axis
 #set xrange [y1min-100:y1max+100]
 
