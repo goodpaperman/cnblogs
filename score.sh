@@ -25,7 +25,12 @@ git add score.txt
 
 # force to calculate fit params & predicating values
 ./plot.sh "update_predicating_data"
-git add predicate_*.data
+
+# to prevent adding predicate_merge.data intermedia file
+# git add predicate_*.data
+git add predicate_binomial.data 
+git add predicate_logarithm.data
+git add predicate_reciprocal.data
 
 git commit -m "udpate score"
 if [ $has_expect -ne 0 ]; then 
