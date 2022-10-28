@@ -28,8 +28,8 @@ while [ -z "${data}"  -a $n -lt 1000 ]; do
     n=$((n+1))
 done
 
-if [ $n -ge 1000 ]; then 
-    echo "fatal error!"
+if [ -z "${data}" ]; then 
+    echo "fetch score & rank data failed, fatal error!"
     exit 1
 fi
 
