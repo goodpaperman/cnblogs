@@ -16,8 +16,23 @@ if [ "$day" \< "$last" -o "$day" = "$last" ]; then
     exit 0
 fi
 
+n=1
+data=""
 usr=$(cat user.txt)
-data=$(curl -s "https://www.cnblogs.com/$usr/ajax/sidecolumn.aspx" | grep 'liScore' -A 6 | sed -n -e 3p -e 7p)
+while [ -z "${data}"  -a $n -lt 1000 ]; do
+    now=$(date +"%H-%M-%S")
+    echo "${now} [$n]: start query data at ${now}"
+    data=$(curl -s "https://www.cnblogs.com/$usr/ajax/sidecolumn.aspx" | grep 'liScore' -A 6 | sed -n -e 3p -e 7p)
+    now=$(date +"%H-%M-%S")
+    echo "${now} [$n]: ${data}"
+    n=$((n+1))
+done
+
+if [ $n -ge 1000 ]; then 
+    echo "fatal error!"
+    exit 1
+fi
+
 score=$(echo $data | sed -n 1p)
 rank=$(echo $data | sed -n 2p)
 echo "$day $score $rank" >> score.txt
@@ -39,3 +54,5 @@ if [ $has_expect -ne 0 ]; then
 else
     ./gpush.sh
 fi
+
+echo "============================================================"
