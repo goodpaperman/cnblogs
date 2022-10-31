@@ -1,4 +1,6 @@
 #! /bin/sh
+
+REQUEST_RETRY_TIMES=60
 type expect >/dev/null 2>&1
 has_expect=$?
 
@@ -19,7 +21,7 @@ fi
 n=1
 data=""
 usr=$(cat user.txt)
-while [ -z "${data}"  -a $n -lt 1000 ]; do
+while [ -z "${data}"  -a $n -lt ${REQUEST_RETRY_TIMES} ]; do
     now=$(date +"%H-%M-%S")
     echo "${now} [$n]: start query data at ${now}"
     data=$(curl -s "https://www.cnblogs.com/$usr/ajax/sidecolumn.aspx" | grep 'liScore' -A 6 | sed -n -e 3p -e 7p)
