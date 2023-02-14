@@ -10,7 +10,7 @@ eval $(cat ./score.txt | tail -1 | awk '{ print "y1max="$2; print "y2min="$3 }')
 #y2min=$(echo $lastline | awk '{ print $3 }')
 
 echo "y1 range [$y1min,$y1max], y2 range [$y2max,$y2min]"
-gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./draw.plt
+gnuplot -e "usr='$usr'" -e "y1range='$(($y1max-$y1min))'" -e "y2range='$(($y2max-$y2min))'" ./drawinone.plt
 
 # clear log to get generated values
 rm fit.log 2>/dev/null
